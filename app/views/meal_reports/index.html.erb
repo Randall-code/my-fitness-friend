@@ -2,6 +2,7 @@
   <%= date %>
   <% meal_reports.each do |meal_report| %>
     <div>
+      <%= meal_report.notes%>
       <% meal_report.meals.each do |meal| %> 
         <%= meal.meal_type %>
       <% end %>
