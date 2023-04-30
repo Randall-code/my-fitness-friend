@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'factory_bot'
 
 # frozen_string_literal: true
 
@@ -27,15 +28,25 @@ require 'cucumber/rails'
 #
 # 2) Set the value below to true. Beware that doing this globally is not
 # recommended as it will mask a lot of errors for you!
-#
+
+def load_fixture(filename)
+  path = Rails.root.join('features', 'support', 'fixtures', filename)
+  File.open(path, 'r', &:read)
+end
+
+World(FactoryBot::Syntax::Methods)
+World(Rails.application.routes.url_helpers)
+
 ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
   DatabaseCleaner.strategy = :transaction
 rescue NameError
-  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+  raise 'You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it.'
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
@@ -57,4 +68,3 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
