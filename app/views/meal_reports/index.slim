@@ -1,0 +1,8 @@
+= week_calendar(number_of_weeks: 1, events: @meal_reports) do |date, meal_reports|
+  div id="#{date}"
+  =date
+  -meal_reports.each do |meal_report| 
+    <div>
+      = meal_report.notes
+      - meal_report.meals.each do |meal| 
+        = meal.meal_type 

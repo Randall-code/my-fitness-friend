@@ -33,6 +33,8 @@ gem 'pg'
 
 gem "simple_calendar"
 
+gem "slim"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
