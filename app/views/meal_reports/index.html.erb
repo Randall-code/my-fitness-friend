@@ -1,4 +1,5 @@
 <%= week_calendar(number_of_weeks: 1, events: @meal_reports) do |date, meal_reports| %>
+  <div id=<%=date%>></div>
   <%= date %>
   <% meal_reports.each do |meal_report| %>
     <div>

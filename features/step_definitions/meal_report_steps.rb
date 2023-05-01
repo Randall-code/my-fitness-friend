@@ -3,7 +3,7 @@ Given('there are meal reports') do
   @report_next_week = create(:meal_report, report_date: Time.zone.now + 1.week, notes: 'Bobs Borgor')
 end
 
-When('I navigate to the meal report index') do
+When('I visit the homepage') do
   visit('/')
 end
 
