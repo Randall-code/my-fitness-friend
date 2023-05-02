@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root 'meal_reports#index'
 
   resources :meal_reports
+
+  resources :meals
 end
