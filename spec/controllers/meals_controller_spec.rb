@@ -23,33 +23,44 @@ describe MealsController do
         {
           meal_type: 'Breakfast',
           notes: 'This is it',
-          meal_report_id: 1
+          report_date: "2023-05-02"
         }
       }
     end
-  
-    context "when the meal is valid" do
-      before do
-        create(:meal_report)
-      end
-      it 'creates a meal' do
-        post :create, params: params
-        expect(Meal.count).to eq 1
-        expect(assigns(:meal).notes).to eq('This is it')
-        expect(assigns(:meal).meal_type).to eq('Breakfast')
+    context "when the meal report is created/found successfully" do
+      context "when the meal is valid" do
+        it 'creates a meal' do
+          post :create, params: params
+          expect(Meal.count).to eq 1
+          expect(assigns(:meal).notes).to eq('This is it')
+          expect(assigns(:meal).meal_type).to eq('Breakfast')
+        end
+
+        it "redirects to the meal report index page" do
+          expect(subject).to redirect_to(meal_reports_path)
+        end
       end
 
-      it "redirects to the meal report index page" do
-        expect(subject).to redirect_to(meal_reports_path)
+      context "when the meal is not valid" do
+        let(:invalid_meal) { instance_double(Meal, :invalid_meal)}
+        before do
+          allow(Meal).to receive(:new) {invalid_meal}
+          allow(invalid_meal).to receive(:save) {nil}
+        end
+
+        it "renders the new meal page" do
+          subject
+          expect(response).to render_template(:new)
+        end
       end
     end
 
-    context "when the meal is not valid" do
+    context "when the meal report is created/found unsuccessfully" do
       before do 
-        allow(Meal).to receive(:create) {nil}
+        allow(MealReport).to receive(:find_or_create_by){nil}
       end
 
-      it "renders the new meal page" do
+      it "renders the new page" do
         subject
         expect(response).to render_template(:new)
       end
