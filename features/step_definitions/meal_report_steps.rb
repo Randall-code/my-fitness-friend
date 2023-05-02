@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given('there are meal reports') do
   @report_this_week = create(:meal_report)
   @report_next_week = create(:meal_report, report_date: Time.zone.now + 1.week, notes: 'Bobs Borgor')

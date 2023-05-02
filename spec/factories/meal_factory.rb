@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :meal do
     meal_type { Meal.meal_types.keys.sample }

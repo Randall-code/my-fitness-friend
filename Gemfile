@@ -31,9 +31,9 @@ gem 'jbuilder'
 
 gem 'pg'
 
-gem "simple_calendar"
+gem 'simple_calendar'
 
-gem "slim"
+gem 'slim'
 
 gem 'simple_form'
 
@@ -64,10 +64,10 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'rails-controller-testing'
-  gem 'faker'
 end
 
 group :development do
@@ -83,11 +83,11 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'cucumber-rails'
 end
 
-gem "cssbundling-rails", "~> 1.1"
+gem 'cssbundling-rails', '~> 1.1'
 
-gem "jsbundling-rails", "~> 1.1"
+gem 'jsbundling-rails', '~> 1.1'

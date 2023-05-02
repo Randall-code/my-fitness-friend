@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When('I click create meal') do
   date = Date.today.strftime('%Y-%m-%d')
   find("##{date}").click_on('Create Meal')
