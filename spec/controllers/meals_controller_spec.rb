@@ -22,7 +22,9 @@ describe MealsController do
       { meal: 
         {
           meal_type: 'Breakfast',
-          notes: 'This is it',
+          notes: 'This is it'
+        },
+        meal_report:{
           report_date: "2023-05-02"
         }
       }
@@ -37,7 +39,7 @@ describe MealsController do
         end
 
         it "redirects to the meal report index page" do
-          expect(subject).to redirect_to(meal_reports_path)
+          expect(subject).to redirect_to(meal_reports_path(format: :html))
         end
       end
 

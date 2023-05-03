@@ -1,9 +1,12 @@
 = week_calendar(number_of_weeks: 1, events: @meal_reports) do |date, meal_reports|
   div id="#{date}"
-    =date
-    = link_to("Create Meal", new_meal_path)
-    -meal_reports.each do |meal_report| 
-      <div>
-        = meal_report.notes
-        - meal_report.meals.each do |meal| 
-          = meal.meal_type 
+    .card
+      .card-header
+        = date
+      ul.list-group.list-group-flush
+        -meal_reports.each do |meal_report| 
+          - meal_report.meals.each do |meal| 
+            li.list-group-item
+              = meal.meal_type 
+        li.list-group-item
+          = link_to("Add Meal", new_meal_path(report_date: date))
