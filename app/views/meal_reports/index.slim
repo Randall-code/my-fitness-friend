@@ -5,6 +5,7 @@
         = date
       ul.list-group.list-group-flush
         -meal_reports.each do |meal_report| 
+          div id="meal-report-#{meal_report.id}"
           - meal_report.meals.each do |meal| 
             li.list-group-item
               = meal.meal_type 
