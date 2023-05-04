@@ -7,7 +7,7 @@ class MealsController < ApplicationController
 
   def create
     meal_report = MealReport.find_or_create_by(meal_report_params)
-    @meal = Meal.new(meal_params.merge({meal_report_id: meal_report&.id}))
+    @meal = Meal.new(meal_params.merge({ meal_report_id: meal_report&.id }))
     if @meal.save
       redirect_to meal_reports_path(format: :html)
     else
