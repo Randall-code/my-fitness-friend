@@ -18,6 +18,7 @@ describe MealsController do
 
   describe 'POST create' do
     subject { post :create, params: }
+
     let(:params) do
       { meal:
         {
@@ -28,6 +29,7 @@ describe MealsController do
           report_date: '2023-05-02'
         } }
     end
+
     context 'when the meal report is created/found successfully' do
       context 'when the meal is valid' do
         it 'creates a meal' do
@@ -44,9 +46,10 @@ describe MealsController do
 
       context 'when the meal is not valid' do
         let(:invalid_meal) { instance_double(Meal, :invalid_meal) }
+
         before do
           allow(Meal).to receive(:new) { invalid_meal }
-          allow(invalid_meal).to receive(:save) { nil }
+          allow(invalid_meal).to receive(:save).and_return(nil)
         end
 
         it 'renders the new meal page' do
@@ -58,7 +61,7 @@ describe MealsController do
 
     context 'when the meal report is created/found unsuccessfully' do
       before do
-        allow(MealReport).to receive(:find_or_create_by) { nil }
+        allow(MealReport).to receive(:find_or_create_by).and_return(nil)
       end
 
       it 'renders the new page' do

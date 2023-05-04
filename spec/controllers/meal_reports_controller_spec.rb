@@ -13,6 +13,7 @@ describe MealReportsController do
 
     context 'when there is no start date param' do
       let(:start_date) { Date.today }
+
       it 'assigns meal_reports using todays date' do
         get :index
         expect(assigns(:meal_reports)).to eq meal_report
@@ -21,10 +22,26 @@ describe MealReportsController do
 
     context 'when there is a start date param' do
       let(:start_date) { Date.parse('2023-04-10') }
+
       it 'assigns meal_reports created in the week specified' do
         get :index, params: { start_date: '2023-04-10' }
         expect(assigns(:meal_reports)).to eq meal_report
       end
+    end
+  end
+
+  describe 'Get show' do
+    subject { get :show, params: { id: '1' } }
+
+    let(:meal_report) { instance_double(MealReport, :meal_report) }
+
+    before do
+      allow(MealReport).to receive(:find) { meal_report }
+    end
+
+    it 'assigns the meal report' do
+      subject
+      expect(assigns(:meal_report)).to eq(meal_report)
     end
   end
 end

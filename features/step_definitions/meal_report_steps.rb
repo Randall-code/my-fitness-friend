@@ -28,3 +28,12 @@ end
 When('I go to the next week') do
   click_on('Next')
 end
+
+When('I click on the meal report') do
+  @date = Date.today.strftime('%Y-%m-%d')
+  find("##{@date}").click_on('View Details')
+end
+
+Then('I see the meal report and its meal data') do
+  pending # Write code here that turns the phrase above into concrete actions
+end

@@ -5,9 +5,12 @@
         = date
       ul.list-group.list-group-flush
         -meal_reports.each do |meal_report| 
+          
           div id="meal-report-#{meal_report.id}"
-          - meal_report.meals.each do |meal| 
             li.list-group-item
-              = meal.meal_type 
+              = link_to("View Details", meal_report_path(meal_report))
+            - meal_report.meals.each do |meal| 
+              li.list-group-item
+                = meal.meal_type 
         li.list-group-item
           = link_to("Add Meal", new_meal_path(report_date: date))
