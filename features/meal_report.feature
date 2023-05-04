@@ -15,6 +15,7 @@ Scenario: I see next weeks meal report
 
 Scenario: I view the show page of a meal report
   Given there are meal reports
+  And there are meals 
   When I visit the homepage
   And I click on the meal report
   Then I see the meal report and its meal data

@@ -1,0 +1,12 @@
+.d-flex.justify-content-center
+  .card.align-items-center.mx-auto
+    .card-body
+      h5.card-title
+        = @meal_report.report_date 
+    ul.list-group.list-group-flush
+      - @meal_report.meals.each do |meal|
+        li.list-group-item
+          = meal.meal_type
+    .card-body
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>

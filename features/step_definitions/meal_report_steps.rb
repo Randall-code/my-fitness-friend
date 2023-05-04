@@ -5,6 +5,10 @@ Given('there are meal reports') do
   @report_next_week = create(:meal_report, report_date: Time.zone.now + 1.week)
 end
 
+Given('there are meals') do
+  @report_this_week.meals.create(meal_type: 'Breakfast')
+end
+
 When('I visit the homepage') do
   visit('/')
 end
@@ -35,5 +39,8 @@ When('I click on the meal report') do
 end
 
 Then('I see the meal report and its meal data') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content(@report_this_week.report_date)
+  @report_this_week.meals.each do |meal|
+    expect(page).to have_content(meal.meal_type)
+  end
 end
